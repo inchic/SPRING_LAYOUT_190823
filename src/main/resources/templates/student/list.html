@@ -1,0 +1,56 @@
+<!-- /.row -->
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+	<th:block layout:fragment="layout.content">
+		<script>
+			$(document).ready(function () {
+				$("#layerModal").click(function () {
+					$("#myModal").modal();
+				});
+			});
+		</script>
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Advanced Tables
+				</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<div class="dataTable_wrapper">
+						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<thead>
+								<tr>
+									<th><input type="checkbox" id="selecctall" /></th>
+									<!-- <th>ORGANIZATION_SEQ</th> -->
+									<th>NAME</th>
+									<th>passport_number</th>
+									<!-- <th>TELEPHONE</th> -->
+									<!-- <th>ORDER_NUMBER</th> -->
+									<th>Update</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- //organization을 student로 -->
+								<!-- //ORGANIZATION_SEQ을 id로 -->
+								<!-- //ORDER_NUMBER를 passport_number로 -->
+								<tr th:each="resultData: ${resultMap.resultList}">
+									<td><input type="checkbox" id="selecctall" /></td>
+									<td th:text=${resultData.id}>id</td>
+									<td><a href="./student/read" th:href=@{/student/read(id=${resultData.id})}
+											th:text=${resultData.NAME}>NAME
+										</a> </td>
+									<!-- <td th:text=${resultData.TELEPHONE}>TELEPHONE</td> -->
+									<td th:text=${resultData.passport_number}>passport_number</td>
+									<td><a href="./student/update" th:href=@{/student/update(id=${resultData.id})}>edit
+											</a> </td> <td><a href="./student/delete"
+												th:href=@{/student/delete(id=${resultData.id})}>delete </a> </td> </tr>
+												</tbody> </table> </div> <!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+	</th:block>
+</div>
+<!-- /.row -->
